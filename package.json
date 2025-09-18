@@ -1,0 +1,25 @@
+{
+  "name": "english-oral-test-tip",
+  "version": "1.0.0",
+  "description": "",
+  "main": "database.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/netbeen/english-oral-test-tip.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/netbeen/english-oral-test-tip/issues"
+  },
+  "homepage": "https://github.com/netbeen/english-oral-test-tip#readme",
+  "dependencies": {
+    "serve": "^14.2.5"
+  }
+}
