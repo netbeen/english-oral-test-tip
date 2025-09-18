@@ -44,7 +44,10 @@ function showArticle(article) {
 function hideArticle() {
     contentContainer.classList.add('hidden');
     searchContainer.classList.remove('hidden');
-    searchBox.focus();
+    // Ensure the search box is focusable before setting focus.
+    requestAnimationFrame(() => {
+        searchBox.focus();
+    });
 }
 
 /**
@@ -98,3 +101,17 @@ document.addEventListener('keydown', (e) => {
         hideArticle();
     }
 });
+
+searchBox.addEventListener('blur', () => {
+    // If the search box loses focus while on the search page (e.g., by clicking the background),
+    // this will refocus it. The timeout prevents an infinite loop and allows clicks
+    // on search results to be processed correctly before the check.
+    setTimeout(() => {
+        if (contentContainer.classList.contains('hidden')) {
+            searchBox.focus();
+        }
+    }, 0);
+});
+
+// Set focus to the search box on initial load
+searchBox.focus();

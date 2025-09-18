@@ -1,13 +1,13 @@
 body {
     font-family: sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    font-size: 1.5em; /* Increase base font size */
+    font-size: 1.5em;
 }
 
 #search-container {
@@ -16,39 +16,41 @@ body {
 
 #search-box {
     width: 100%;
-    padding: 20px; /* Increase padding */
-    font-size: 1.5em; /* Increase font size */
-    border: 1px solid #ccc;
+    padding: 20px;
+    font-size: 1.5em;
+    border: 1px solid #444; /* Darker border */
     border-radius: 5px;
     box-sizing: border-box;
+    background-color: #1e1e1e; /* Dark input background */
+    color: #e0e0e0; /* Light text */
 }
 
 #results-list {
     list-style: none;
     padding: 0;
     margin: 0;
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background-color: #1e1e1e; /* Dark background */
+    border: 1px solid #444; /* Darker border */
     border-top: none;
     border-radius: 0 0 5px 5px;
 }
 
 #results-list li {
-    padding: 20px; /* Increase padding */
+    padding: 20px;
     cursor: pointer;
-    font-size: 1.2em; /* Increase font size */
+    font-size: 1.2em;
 }
 
 #results-list li.selected {
-    background-color: #eee;
+    background-color: #333; /* Darker selected background */
 }
 
 #content-container {
-    width: 95%; /* Use more screen width */
-    background-color: #fff;
+    width: 95%;
+    background-color: #1e1e1e; /* Dark background */
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Darker shadow */
 }
 
 #article-title {
