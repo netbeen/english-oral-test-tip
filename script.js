@@ -4,6 +4,8 @@ const searchContainer = document.getElementById('search-container');
 const contentContainer = document.getElementById('content-container');
 const articleTitle = document.getElementById('article-title');
 const articleContent = document.getElementById('article-content');
+const reviewAllBtn = document.getElementById('review-all-btn');
+const reviewContainer = document.getElementById('review-container');
 
 let selectedIndex = -1;
 
@@ -26,6 +28,33 @@ function displayResults(results) {
 }
 
 /**
+ * @function showAllArticles
+ * @description Displays all articles for review.
+ */
+function showAllArticles() {
+    searchContainer.classList.add('hidden');
+    reviewContainer.classList.remove('hidden');
+    reviewContainer.innerHTML = '';
+
+    const shuffledArticles = [...articles].sort(() => Math.random() - 0.5);
+
+    shuffledArticles.forEach(article => {
+        const articleDiv = document.createElement('div');
+        articleDiv.classList.add('article');
+
+        const title = document.createElement('h1');
+        title.textContent = article.title;
+
+        const content = document.createElement('div');
+        content.textContent = article.content;
+
+        articleDiv.appendChild(title);
+        articleDiv.appendChild(content);
+        reviewContainer.appendChild(articleDiv);
+    });
+}
+
+/**
  * @function showArticle
  * @description Shows the selected article.
  * @param {object} article - The article to show.
@@ -43,6 +72,7 @@ function showArticle(article) {
  */
 function hideArticle() {
     contentContainer.classList.add('hidden');
+    reviewContainer.classList.add('hidden');
     searchContainer.classList.remove('hidden');
     // Ensure the search box is focusable before setting focus.
     requestAnimationFrame(() => {
@@ -64,6 +94,8 @@ function updateSelection() {
         }
     }
 }
+
+reviewAllBtn.addEventListener('click', showAllArticles);
 
 searchBox.addEventListener('input', () => {
     const searchTerm = searchBox.value.toLowerCase();
@@ -97,7 +129,7 @@ searchBox.addEventListener('keydown', (e) => {
 });
 
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Backspace' && !contentContainer.classList.contains('hidden')) {
+    if (e.key === 'Backspace' && (!contentContainer.classList.contains('hidden') || !reviewContainer.classList.contains('hidden'))) {
         hideArticle();
     }
 });
@@ -107,7 +139,7 @@ searchBox.addEventListener('blur', () => {
     // this will refocus it. The timeout prevents an infinite loop and allows clicks
     // on search results to be processed correctly before the check.
     setTimeout(() => {
-        if (contentContainer.classList.contains('hidden')) {
+        if (contentContainer.classList.contains('hidden') && reviewContainer.classList.contains('hidden')) {
             searchBox.focus();
         }
     }, 0);

@@ -12,6 +12,7 @@ body {
 
 #search-container {
     width: 95%; /* Use more screen width */
+    position: relative;
 }
 
 #search-box {
@@ -60,6 +61,24 @@ body {
 #article-content {
     font-size: 1.5em; /* Increase content font size */
     line-height: 1.6;
+}
+
+#review-container .article {
+    margin-bottom: 40px;
+}
+
+#review-all-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: auto;
+    padding: 12px 18px;
+    font-size: 0.9em;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #333;
+    color: #e0e0e0;
+    cursor: pointer;
 }
 
 .hidden {
