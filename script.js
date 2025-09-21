@@ -81,6 +81,23 @@ function hideArticle() {
 }
 
 /**
+ * @function searchArticles
+ * @description Filters articles based on a search term with unordered words.
+ * @param {string} searchTerm - The search term.
+ * @returns {Array} - The filtered articles.
+ */
+function searchArticles(searchTerm) {
+    const searchWords = searchTerm.toLowerCase().split(' ').filter(word => word.length > 0);
+    if (searchWords.length === 0) {
+        return [];
+    }
+    return articles.filter(article => {
+        const titleLower = article.title.toLowerCase();
+        return searchWords.every(word => titleLower.includes(word));
+    });
+}
+
+/**
  * @function updateSelection
  * @description Updates the selected item in the results list.
  */
@@ -98,12 +115,8 @@ function updateSelection() {
 reviewAllBtn.addEventListener('click', showAllArticles);
 
 searchBox.addEventListener('input', () => {
-    const searchTerm = searchBox.value.toLowerCase();
-    if (searchTerm === '') {
-        resultsList.innerHTML = '';
-        return;
-    }
-    const results = articles.filter(article => article.title.toLowerCase().includes(searchTerm));
+    const searchTerm = searchBox.value;
+    const results = searchArticles(searchTerm);
     displayResults(results);
 });
 
@@ -121,8 +134,7 @@ searchBox.addEventListener('keydown', (e) => {
         }
     } else if (e.key === 'Enter') {
         if (selectedIndex > -1) {
-            const searchTerm = searchBox.value.toLowerCase();
-            const results = articles.filter(article => article.title.toLowerCase().includes(searchTerm));
+            const results = searchArticles(searchBox.value);
             showArticle(results[selectedIndex]);
         }
     }
